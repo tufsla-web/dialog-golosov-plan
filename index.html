@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Диалог голосов по проекту — план практики</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f3efe6;
+  --bg-deep: #ece6d6;
+  --ink: #1b1612;
+  --ink-soft: #433a30;
+  --muted: #6b5f4f;
+  --rule: #c9bfa7;
+  --rule-soft: #ddd4bf;
+  --accent: #7a2e1a;
+  --accent-soft: #b85b3e;
+  --paper-shadow: 0 1px 0 rgba(0,0,0,0.02);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 17px;
+  line-height: 1.65;
+  font-feature-settings: "kern", "liga", "onum";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle paper grain */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(0,0,0,0.012) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(0,0,0,0.010) 0%, transparent 50%);
+  mix-blend-mode: multiply;
+}
+
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 64px 32px 120px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ============ MASTHEAD ============ */
+.masthead {
+  border-top: 2px solid var(--ink);
+  padding-top: 24px;
+  margin-bottom: 72px;
+  position: relative;
+}
+
+.masthead .meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 48px;
+}
+
+.masthead .meta-row span::before {
+  content: "— ";
+  opacity: 0.5;
+}
+
+.eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+  display: block;
+}
+
+h1.title {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "opsz" 144, "SOFT" 50, "WONK" 0;
+  font-weight: 350;
+  font-size: clamp(48px, 7.5vw, 84px);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  margin: 0 0 28px;
+  color: var(--ink);
+}
+
+h1.title em {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--accent);
+}
+
+.deck {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "opsz" 24;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  max-width: 560px;
+  margin: 0 0 40px;
+  font-style: italic;
+}
+
+.byline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 36px;
+  padding: 20px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.byline dt {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.byline dd {
+  margin: 0;
+  font-family: "Fraunces", serif;
+  font-variation-settings: "opsz" 14;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+/* ============ SECTIONS ============ */
+section {
+  margin-bottom: 80px;
+  position: relative;
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 20px;
+  align-items: baseline;
+  margin-bottom: 36px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-num {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  padding-top: 6px;
+}
+
+.section-title {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "opsz" 48, "SOFT" 30;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin: 0;
+  color: var(--ink);
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* ============ BODY PROSE ============ */
+.prose p {
+  margin: 0 0 18px;
+  hyphens: auto;
+}
+
+.prose p.lead::first-letter {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "opsz" 144, "SOFT" 20;
+  font-size: 68px;
+  float: left;
+  line-height: 0.9;
+  margin: 6px 8px 0 -2px;
+  color: var(--accent);
+  font-weight: 400;
+}
+
+.prose em, .prose i {
+  font-style: italic;
+}
+
+.prose strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.pull-quote {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "opsz" 72, "SOFT" 50;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(22px, 3.2vw, 30px);
+  line-height: 1.3;
+  color: var(--ink);
+  margin: 40px 0;
+  padding: 24px 0 24px 24px;
+  border-left: 3px solid var(--accent);
+}
+
+.pull-quote cite {
+  display: block;
+  margin-top: 14px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-style: normal;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.pull-quote cite::before {
+  content: "— ";
+}
+
+/* ============ TIMELINE (OVERALL) ============ */
+.timeline {
+  position: relative;
+  margin: 40px 0;
+  padding-left: 0;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 100px;
+  top: 12px;
+  bottom: 12px;
+  width: 1px;
+  background: var(--rule);
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 90px 30px 1fr;
+  gap: 0;
+  padding: 14px 0;
+  align-items: baseline;
+}
+
+.timeline-item + .timeline-item {
+  border-top: 1px solid var(--rule-soft);
+}
+
+.tl-time {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+.tl-dur {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 4px;
+  letter-spacing: 0.06em;
+}
+
+.tl-dot {
+  position: relative;
+  height: 24px;
+}
+
+.tl-dot::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  width: 8px;
+  height: 8px;
+  background: var(--bg);
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+}
+
+.tl-item.accent .tl-dot::after {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.tl-title {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "opsz" 20;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+
+.tl-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.45;
+  margin-top: 2px;
+}
+
+/* ============ STEP CARDS (two columns) ============ */
+.steps-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin: 40px 0;
+}
+
+.steps-col {
+  background: var(--bg-deep);
+  padding: 28px 24px 28px;
+  border-radius: 2px;
+  position: relative;
+}
+
+.steps-col-head {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.steps-col-title {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "opsz" 24, "SOFT" 30;
+  font-weight: 400;
+  font-size: 20px;
+  margin: 0 0 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.step {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.step:last-child {
+  border-bottom: none;
+}
+
+.step-num {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+.step-title {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "opsz" 16;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0 0 2px;
+  color: var(--ink);
+}
+
+.step-time {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 4px;
+  letter-spacing: 0.04em;
+}
+
+.step-desc {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* ============ INSTRUCTION BLOCK ============ */
+.instruction {
+  background: transparent;
+  border: 1px solid var(--rule);
+  padding: 28px 32px;
+  margin: 32px 0;
+  position: relative;
+}
+
+.instruction-label {
+  position: absolute;
+  top: -9px;
+  left: 24px;
+  background: var(--bg);
+  padding: 0 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.instruction p {
+  margin: 0 0 12px;
+}
+
+.instruction p:last-child { margin-bottom: 0; }
+
+.instruction ul {
+  margin: 8px 0;
+  padding-left: 18px;
+}
+
+.instruction li {
+  margin: 6px 0;
+  padding-left: 6px;
+}
+
+/* ============ PROMPTS / QUESTION LIST ============ */
+.prompts-intro {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "opsz" 24;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 19px;
+  color: var(--ink-soft);
+  margin: 28px 0 32px;
+  line-height: 1.5;
+}
+
+.prompts {
+  column-count: 2;
+  column-gap: 40px;
+  column-rule: 1px solid var(--rule-soft);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: prompt;
+}
+
+.prompts li {
+  break-inside: avoid;
+  padding: 9px 0 9px 32px;
+  position: relative;
+  counter-increment: prompt;
+  font-size: 15px;
+  line-height: 1.5;
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.prompts li::before {
+  content: counter(prompt, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 11px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+/* ============ FACILITATOR ROLE ============ */
+.facilitator {
+  margin: 32px 0;
+}
+
+.fac-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 18px 0;
+  border-top: 1px solid var(--rule-soft);
+}
+
+.fac-item:last-child { border-bottom: 1px solid var(--rule-soft); }
+
+.fac-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.fac-text {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "opsz" 20;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.fac-text em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* ============ CALLOUTS ============ */
+.callout-big {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "opsz" 72, "SOFT" 100, "WONK" 1;
+  font-weight: 300;
+  font-style: italic;
+  text-align: center;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 56px 0;
+  padding: 0 20px;
+  letter-spacing: -0.01em;
+}
+
+.callout-big strong {
+  font-weight: 500;
+  color: var(--accent);
+  font-style: normal;
+  font-variation-settings: "opsz" 72, "SOFT" 30, "WONK" 0;
+}
+
+/* ============ DIVIDER ============ */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 80px 0;
+  color: var(--rule);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: var(--muted);
+}
+
+.divider::before, .divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+/* ============ FOOTER ============ */
+.colophon {
+  margin-top: 120px;
+  padding-top: 32px;
+  border-top: 2px solid var(--ink);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 640px) {
+  .page { padding: 40px 22px 80px; }
+  .steps-grid { grid-template-columns: 1fr; gap: 20px; }
+  .prompts { column-count: 1; }
+  .timeline::before { left: 82px; }
+  .timeline-item { grid-template-columns: 72px 28px 1fr; }
+  h1.title { font-size: 48px; }
+  .section-head { grid-template-columns: 48px 1fr; gap: 14px; }
+  .section-title { font-size: 26px; }
+}
+
+/* ============ PRINT ============ */
+@media print {
+  body { background: white; color: black; font-size: 11pt; }
+  body::before { display: none; }
+  .page { padding: 0; max-width: none; }
+  section { break-inside: avoid-page; margin-bottom: 32px; }
+  .pull-quote, .callout-big { break-inside: avoid; }
+  .prompts { column-count: 2; }
+  a { color: black; text-decoration: none; }
+}
+</style>
+</head>
+<body>
+<main class="page">
+
+  <!-- ============ MASTHEAD ============ -->
+  <header class="masthead">
+    <div class="meta-row">
+      <span>8 поток</span>
+      <span>Москва</span>
+      <span>апрель 2026</span>
+      <span>18:00 — 20:00</span>
+    </div>
+
+    <span class="eyebrow">Практика / Модуль работы с иррациональным</span>
+
+    <h1 class="title">Диалог <em>голосов</em><br>по проекту</h1>
+
+    <p class="deck">
+      Двухчасовая практика, в которой проект становится субъектом, а не объектом — и отвечает на вопросы держателя через тело и интуицию четырёх участников группы.
+    </p>
+
+    <dl class="byline">
+      <div>
+        <dt>Метод</dt>
+        <dd>Voice Dialogue</dd>
+      </div>
+      <div>
+        <dt>Авторы метода</dt>
+        <dd>Хэл и&nbsp;Сидра Стоун, 1970-е</dd>
+      </div>
+      <div>
+        <dt>Формат</dt>
+        <dd>Общий зал + группы по 4–5</dd>
+      </div>
+      <div>
+        <dt>Длительность</dt>
+        <dd>2 часа</dd>
+      </div>
+    </dl>
+  </header>
+
+  <!-- ============ 01. CONTEXT ============ -->
+  <section id="context">
+    <div class="section-head">
+      <div class="section-num">01</div>
+      <h2 class="section-title">Зачем эта практика <em>здесь</em></h2>
+    </div>
+
+    <div class="prose">
+      <p class="lead">Модуль про новое. На модуле мы уже узнали: чтобы встретить новое — надо выйти за пределы привычного, в иррациональное. Обычно новое мы встречаем сопротивлением и недоверием. Сегодня мы предлагаем другое состояние: <em>«А что если?»</em></p>
+
+      <p>Что если это имеет право на жизнь? Что если это не совсем бред? Что если у проекта, над которым вы сейчас ступорите, есть своя точка зрения — и она знает то, чего не знаете вы?</p>
+
+      <div class="pull-quote">
+        Нет ни одного человека, который бы был на 100 процентов не прав.
+        <cite>Кен Уилбер</cite>
+      </div>
+
+      <p>Наш стандартный способ думать про проекты — что это <em>объект,</em> который выполняет функцию, живёт в нашей повестке, внутри наших рамок и захваченностей. Сегодня предлагаем подумать про проект как про <em>субъект</em>: у него свои цели, собственное видение, свой характер, свои вопросы и ответы.</p>
+
+      <p>С субъектом можно выстраивать взаимоотношения. Проект может «сотрудничать» с вами или «не сотрудничать» — как в примерах из чекина. Радикальное сотрудничество — это открытость, доверие, экологичность, бережность. Но чтобы сотрудничать с кем-то — надо сначала узнать, что там у него.</p>
+
+      <div class="pull-quote">
+        Пока вы не сделаете бессознательное сознательным, оно будет направлять вашу жизнь, и вы будете называть это судьбой.
+        <cite>К. Г. Юнг</cite>
+      </div>
+
+      <p>В основе метода Voice Dialogue — представление о том, что личность состоит из множества «я», субличностей, у каждой из которых свои взгляды, желания и потребности. Метод позволяет поговорить с ними напрямую. Сегодня мы применяем ту же логику к проекту.</p>
+
+      <p>Предметы и ситуации не разговаривают. Но речевой интерфейс настолько удобен человеку, что помогает изучать что-то не как объект, а как субъект. <em>Шварц, основатель IFS,</em> напоминает: история того, как мы слушаем голоса в голове — почтенная традиция. Люди давно разговаривают с разными сущностями. И это работает.</p>
+    </div>
+  </section>
+
+  <!-- ============ 02. TIMELINE ============ -->
+  <section id="timeline">
+    <div class="section-head">
+      <div class="section-num">02</div>
+      <h2 class="section-title">Сценарий двух часов</h2>
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-item tl-item">
+        <div>
+          <div class="tl-time">18:00</div>
+          <div class="tl-dur">5 мин</div>
+        </div>
+        <div class="tl-dot"></div>
+        <div>
+          <div class="tl-title">Welcome, small talk</div>
+          <div class="tl-desc">Сбор, настройка, первый контакт.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item tl-item">
+        <div>
+          <div class="tl-time">18:05</div>
+          <div class="tl-dur">15 мин</div>
+        </div>
+        <div class="tl-dot"></div>
+        <div>
+          <div class="tl-title">Чек-ин в тройках</div>
+          <div class="tl-desc">Два проектных опыта — «всё сопротивлялось» и «всё складывалось само». Вход в тему.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item tl-item accent">
+        <div>
+          <div class="tl-time">18:20</div>
+          <div class="tl-dur">5 мин</div>
+        </div>
+        <div class="tl-dot"></div>
+        <div>
+          <div class="tl-title">Бубубу и вводная</div>
+          <div class="tl-desc">Метод Стоунов, проект как субъект, Юнг и Шварц — рамка практики.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item tl-item accent">
+        <div>
+          <div class="tl-time">18:25</div>
+          <div class="tl-dur">5 мин</div>
+        </div>
+        <div class="tl-dot"></div>
+        <div>
+          <div class="tl-title">Шаги практики в общем зале</div>
+          <div class="tl-desc">Разбор инструкции до разведения по группам.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item tl-item accent">
+        <div>
+          <div class="tl-time">18:30</div>
+          <div class="tl-dur">80 мин</div>
+        </div>
+        <div class="tl-dot"></div>
+        <div>
+          <div class="tl-title">Диалог голосов в группах 4–5 человек</div>
+          <div class="tl-desc">Ядро практики. Каждый участник — держатель проекта в своей очереди.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item tl-item">
+        <div>
+          <div class="tl-time">19:50</div>
+          <div class="tl-dur">10 мин</div>
+        </div>
+        <div class="tl-dot"></div>
+        <div>
+          <div class="tl-title">Шеринг и check-out</div>
+          <div class="tl-desc">Возврат в общий зал, интеграция опыта.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ 03. CHECK-IN ============ -->
+  <section id="checkin">
+    <div class="section-head">
+      <div class="section-num">03</div>
+      <h2 class="section-title">Чек-ин в&nbsp;тройках</h2>
+    </div>
+
+    <div class="prose">
+      <p><strong>Задача:</strong> через собственный опыт зайти в тему нерационального влияния на проект.</p>
+    </div>
+
+    <div class="instruction">
+      <span class="instruction-label">Вопрос на чек-ин</span>
+      <p>Вспомните какое-нибудь мероприятие, занятие, дело, где в момент его делания всё как будто активно сопротивлялось, толкалось, не склеивалось.</p>
+      <p>И наоборот — вспомните дело, где как только вы что-то задумали и решили воплотить, всё складывалось само собой, легко и непринуждённо, прямо даже удивительно. Всё было за вас.</p>
+    </div>
+
+    <div class="prose">
+      <p>У каждого был разный проектный опыт. Иногда проект и взаимодействие между участниками выглядит как разговор слепого с глухим: требуется много усилий, чтобы договориться, прояснить, просто понять друг друга. Шаги не склеиваются, сроки уезжают, приходится постоянно всё перебирать. Адский ад.</p>
+
+      <p>Иногда по-другому — проект летит, все понимают друг друга с полуслова, тайминг складывается сам собой, по ходу обнаруживается много лёгкого и интересного, результаты радуют. Идёшь на статус — душа поёт.</p>
+
+      <p><em>Вывод, который родится сам:</em> есть какие-то причины успеха или неуспеха проектов, о которых мы не знаем, которые не видны из рационального поля.</p>
+    </div>
+  </section>
+
+  <!-- ============ CALLOUT ============ -->
+  <div class="callout-big">
+    Сегодня мы предлагаем ещё один метод для&nbsp;исследования <strong>нерационального.</strong>
+  </div>
+
+  <!-- ============ 04. GROUP WORK ============ -->
+  <section id="practice">
+    <div class="section-head">
+      <div class="section-num">04</div>
+      <h2 class="section-title">Структура работы в&nbsp;группе</h2>
+    </div>
+
+    <div class="prose">
+      <p>Опыт каждого участника напрямую зависит от включённости группы. <strong>Пожалуйста, не меняйте шаги и цели практики.</strong> Перед началом определите таймкипера — его задача следить за временем и последовательностью шагов.</p>
+
+      <p>Что можно брать в исследование: проект, в котором вы испытываете ступор; любую ситуацию, актуальную сейчас, в которой есть вопрос.</p>
+    </div>
+
+    <div class="steps-grid">
+
+      <div class="steps-col">
+        <div class="steps-col-head">Вариант A</div>
+        <h3 class="steps-col-title">Группа из&nbsp;четверых — 20&nbsp;мин на&nbsp;человека</h3>
+
+        <div class="step">
+          <div class="step-num">0</div>
+          <div>
+            <div class="step-title">Таймкипер</div>
+            <div class="step-time">до старта</div>
+            <div class="step-desc">Назначьте ответственного за тайминг и последовательность.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <div class="step-title">Погружение в&nbsp;проект</div>
+            <div class="step-time">4 мин</div>
+            <div class="step-desc">Держатель рассказывает. Остальные слушают, задают уточняющие вопросы, настраиваются чувствовать проект.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <div class="step-title">Разговор с&nbsp;проектом</div>
+            <div class="step-time">11 мин</div>
+            <div class="step-desc">Группа «становится проектом», держатель задаёт вопросы. Отвечают по мере того, как приходят ответы.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <div class="step-title">Выводы держателя</div>
+            <div class="step-time">2 мин</div>
+            <div class="step-desc">Вслух или в тетрадь — для себя.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">4</div>
+          <div>
+            <div class="step-title">Отклик из&nbsp;роли проекта</div>
+            <div class="step-time">3 мин</div>
+            <div class="step-desc">Как было участникам быть проектом — коротко.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">5</div>
+          <div>
+            <div class="step-title">Перезагрузка</div>
+            <div class="step-time">30 сек</div>
+            <div class="step-desc">Стряхнуть роль. Настроиться на следующего.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="steps-col">
+        <div class="steps-col-head">Вариант B</div>
+        <h3 class="steps-col-title">Группа из&nbsp;пятерых — 15&nbsp;мин на&nbsp;человека</h3>
+
+        <div class="step">
+          <div class="step-num">0</div>
+          <div>
+            <div class="step-title">Таймкипер</div>
+            <div class="step-time">до старта</div>
+            <div class="step-desc">Назначьте ответственного за тайминг и последовательность.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <div class="step-title">Погружение в&nbsp;проект</div>
+            <div class="step-time">3 мин</div>
+            <div class="step-desc">Держатель рассказывает. Остальные слушают, задают уточняющие вопросы, настраиваются чувствовать проект.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <div class="step-title">Разговор с&nbsp;проектом</div>
+            <div class="step-time">8 мин</div>
+            <div class="step-desc">Группа «становится проектом», держатель задаёт вопросы. Отвечают по мере того, как приходят ответы.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <div class="step-title">Выводы держателя</div>
+            <div class="step-time">2 мин</div>
+            <div class="step-desc">Вслух или в тетрадь — для себя.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">4</div>
+          <div>
+            <div class="step-title">Отклик из&nbsp;роли проекта</div>
+            <div class="step-time">2 мин</div>
+            <div class="step-desc">Как было участникам быть проектом — коротко.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">5</div>
+          <div>
+            <div class="step-title">Перезагрузка</div>
+            <div class="step-time">30 сек</div>
+            <div class="step-desc">Стряхнуть роль. Настроиться на следующего.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="instruction">
+      <span class="instruction-label">Что&nbsp;представлять, слушая рассказ</span>
+      <p>Когда держатель рассказывает о проекте — представляйте его как живое существо и замечайте:</p>
+      <ul>
+        <li>Что представляется? Какой образ возникает?</li>
+        <li>Какого он пола?</li>
+        <li>Он большой или маленький?</li>
+        <li>Сколько ему лет?</li>
+        <li>Как он одет?</li>
+        <li>Что любит, что не любит?</li>
+      </ul>
+      <p><em>Не записывайте. Просто слушайте, прислушивайтесь, настраивайтесь на чувствование.</em></p>
+    </div>
+
+    <div class="instruction">
+      <span class="instruction-label">Держателю — во&nbsp;время разговора</span>
+      <p>Представь, что перед тобой в зуме — твой многоликий проект. У тебя есть возможность задать ему любые вопросы. Можно пользоваться списком ниже, а можно задавать свои.</p>
+      <p><strong>Замечай, какие реакции рождаются у проекта в ответ на твой вопрос.</strong></p>
+    </div>
+  </section>
+
+  <!-- ============ DIVIDER ============ -->
+  <div class="divider">вопросы к&nbsp;проекту</div>
+
+  <!-- ============ 05. QUESTIONS ============ -->
+  <section id="prompts">
+    <div class="section-head">
+      <div class="section-num">05</div>
+      <h2 class="section-title">31 вопрос, который можно задать</h2>
+    </div>
+
+    <p class="prompts-intro">
+      Список как поддержка, не как обязаловка. Лучший вопрос — тот, который приходит в&nbsp;момент, когда держатель уже смотрит на&nbsp;свой проект как на&nbsp;отдельное существо.
+    </p>
+
+    <ol class="prompts">
+      <li>Кто ты?</li>
+      <li>Зачем ты нужен?</li>
+      <li>Что самое хорошее произошло с тобой за это время?</li>
+      <li>О чём ты жалеешь?</li>
+      <li>Что ты даёшь мне? Какую роль играешь в моей жизни?</li>
+      <li>Что ты даёшь компании, миру?</li>
+      <li>Какие технологии, инструменты тебе нужны, чтобы состояться?</li>
+      <li>Кто твои ключевые заказчики, стейкхолдеры?</li>
+      <li>Кому ты важен, нужен?</li>
+      <li>Что с тобой происходит?</li>
+      <li>Как твои дела? Успехи? Показатели?</li>
+      <li>Что удалось, а что не получилось?</li>
+      <li>Что бы ты поменял в первую очередь в своём движении, развитии?</li>
+      <li>Какие сообщения приходят к тебе чаще всего?</li>
+      <li>Чем ты гордишься?</li>
+      <li>Твои активы и дефициты?</li>
+      <li>Как ты себя чувствуешь?</li>
+      <li>Что ты видишь по отношению к себе?</li>
+      <li>Кто тобой интересуется, вкладывается, заботится?</li>
+      <li>А как ты думаешь, я тебя люблю?</li>
+      <li>Что на тебя влияет больше всего? Что помогает и поддерживает?</li>
+      <li>Что тебя беспокоит?</li>
+      <li>Что вызывает у тебя сильные эмоции? Какие?</li>
+      <li>Что происходит, когда тебе плохо?</li>
+      <li>Какие риски ты видишь для себя?</li>
+      <li>Что нужно сделать мне, чтобы всё разрушить?</li>
+      <li>Что ты делаешь, когда появляется что-то новое?</li>
+      <li>Как ты относишься к ошибкам — членов команды, моим?</li>
+      <li>Что важнее всего для тебя?</li>
+      <li>Кто порадуется или расстроится, когда проект состоится?</li>
+      <li>Лучшая награда для тебя?</li>
+    </ol>
+  </section>
+
+  <!-- ============ 06. FACILITATOR ============ -->
+  <section id="facilitator">
+    <div class="section-head">
+      <div class="section-num">06</div>
+      <h2 class="section-title">Роль фасилитатора</h2>
+    </div>
+
+    <div class="prose">
+      <p>Во-первых — настроить людей на процесс и завести в ощущение «я — это проект». Рациональным гражданам это не всегда просто. Во-вторых — следить, чтобы участники не отгружали советы и суждения, а ловили то, что возникает в моменте. Эта часть похожа на генеративный диалог.</p>
+
+      <p>В-третьих — чтобы не было одного говорливого, а отвечать могли все. И главное — в процессе фасилитатор напоминает про <em>открытый ум, открытое сердце и открытую волю</em> и собой держит этот контекст. Иначе может случиться обычный разбор кейса — но это уже другая практика.</p>
+    </div>
+
+    <div class="facilitator">
+      <div class="fac-item">
+        <div class="fac-label">01 / подводка</div>
+        <div class="fac-text">Рассказать фрейминг в&nbsp;начале — проект как субъект, Стоуны, Юнг, Шварц.</div>
+      </div>
+      <div class="fac-item">
+        <div class="fac-label">02 / дисциплина</div>
+        <div class="fac-text">Следить, чтобы не&nbsp;было базара. Подсказывать и&nbsp;направлять дискуссию.</div>
+      </div>
+      <div class="fac-item">
+        <div class="fac-label">03 / уважение</div>
+        <div class="fac-text">Следить, что держателю <em>дают договорить.</em></div>
+      </div>
+      <div class="fac-item">
+        <div class="fac-label">04 / чистота практики</div>
+        <div class="fac-text">Следить, чтобы не&nbsp;отгружали <em>решения, мудрость и&nbsp;советы.</em></div>
+      </div>
+      <div class="fac-item">
+        <div class="fac-label">05 / рефлексия</div>
+        <div class="fac-text">В&nbsp;конце помочь провести рефлексию. Если вылезло отрицательное — покрутить: «Как это может быть за&nbsp;тебя в&nbsp;этой ситуации?»</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 07. CLOSING ============ -->
+  <section id="closing">
+    <div class="section-head">
+      <div class="section-num">07</div>
+      <h2 class="section-title">Шеринг и&nbsp;check-out</h2>
+    </div>
+
+    <div class="prose">
+      <p>Возвращение в общий зал. Короткий шеринг — что произошло, что нового открылось, что забираем с собой. Завершение модуля.</p>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CALLOUT ============ -->
+  <div class="callout-big" style="margin-top: 100px;">
+    Проект — это не&nbsp;просто объект. У&nbsp;него есть <strong>своя точка зрения.</strong>
+  </div>
+
+  <!-- ============ COLOPHON ============ -->
+  <footer class="colophon">
+    <div>Evolution.new — 8 поток</div>
+    <div>Диалог голосов по проекту</div>
+    <div>Москва · апрель 2026</div>
+  </footer>
+
+</main>
+</body>
+</html>
