@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лондон 2026-2027 — путь до первого модуля</title>
+<meta name="description" content="Публичная карта пути для клиентов: от интервью и первого взноса до старта программы и первого модуля в Лондоне 2026-2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Unbounded:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #121212;
+  --bg-soft: rgba(255, 255, 255, 0.05);
+  --panel: rgba(34, 34, 32, 0.84);
+  --panel-strong: rgba(42, 42, 39, 0.92);
+  --line: rgba(255, 255, 255, 0.11);
+  --line-soft: rgba(255, 255, 255, 0.06);
+  --text: #f5f2ed;
+  --muted: #c3bcb0;
+  --accent: #c47a12;
+  --accent-deep: #7f4700;
+  --accent-soft: rgba(196, 122, 18, 0.16);
+  --emerald: #21b48e;
+  --emerald-soft: rgba(33, 180, 142, 0.18);
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+  --radius-xl: 34px;
+  --radius-lg: 28px;
+  --radius-md: 22px;
+  --radius-sm: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(196, 122, 18, 0.14), transparent 32%),
+    radial-gradient(circle at 85% 18%, rgba(33, 180, 142, 0.10), transparent 28%),
+    linear-gradient(180deg, #181816 0%, #121212 38%, #0f0f0e 100%);
+  color: var(--text);
+  font-family: "Manrope", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle at center, black 45%, transparent 88%);
+  opacity: 0.26;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  width: min(1240px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 30px 0 88px;
+}
+
+.shell {
+  padding: 30px;
+  border: 1px solid var(--line-soft);
+  border-radius: 38px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)),
+    rgba(17, 17, 16, 0.74);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background:
+    linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01)),
+    linear-gradient(180deg, rgba(196, 122, 18, 0.06), transparent 48%);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto -16% -32% auto;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196, 122, 18, 0.18), transparent 62%);
+  filter: blur(10px);
+}
+
+.eyebrow {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 18px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: #ffcf88;
+  font-family: "Unbounded", sans-serif;
+  font-size: 13px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: 28px;
+  margin-top: 28px;
+  align-items: end;
+}
+
+.hero-copy h1 {
+  margin: 0;
+  font-size: clamp(46px, 8vw, 82px);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+  font-weight: 800;
+}
+
+.hero-copy p {
+  max-width: 860px;
+  margin: 24px 0 0;
+  font-size: clamp(21px, 2.6vw, 28px);
+  line-height: 1.28;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.hero-note {
+  position: relative;
+  z-index: 1;
+  padding: 22px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.hero-note .note-label,
+.mini-label,
+.card-label,
+.scenario-meta,
+.module-label,
+.footer-note,
+.timeline-num {
+  font-family: "Unbounded", sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hero-note .note-label,
+.footer-note {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 11px;
+  color: #ffcf88;
+}
+
+.hero-note p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.hero-note strong {
+  color: var(--text);
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.summary-card,
+.section {
+  border-radius: var(--radius-lg);
+}
+
+.summary-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 232px;
+  padding: 28px 28px 26px;
+  border: 1px solid var(--line-soft);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015)),
+    var(--panel);
+}
+
+.summary-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -18% -34% auto;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.06), transparent 62%);
+}
+
+.card-label {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-bottom: 24px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.summary-card h2 {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 14px;
+  font-size: clamp(24px, 3vw, 44px);
+  line-height: 1.03;
+  letter-spacing: -0.04em;
+}
+
+.summary-card p {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: clamp(17px, 2vw, 22px);
+  line-height: 1.35;
+  color: var(--muted);
+}
+
+.section {
+  margin-top: 24px;
+  padding: 34px 34px 36px;
+  border: 1px solid var(--line-soft);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.024), rgba(255, 255, 255, 0.01)),
+    rgba(17, 17, 16, 0.78);
+}
+
+.section-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: end;
+  margin-bottom: 28px;
+}
+
+.section h2 {
+  margin: 0;
+  font-size: clamp(34px, 5vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.section p.lead {
+  max-width: 880px;
+  margin: 14px 0 0;
+  font-size: clamp(19px, 2.1vw, 24px);
+  line-height: 1.35;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.mini-label {
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.timeline {
+  position: relative;
+  margin-top: 34px;
+  padding-left: 96px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 31px;
+  top: 18px;
+  bottom: 18px;
+  width: 4px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(33, 180, 142, 0.7), rgba(33, 180, 142, 0.2));
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-num {
+  position: absolute;
+  left: -96px;
+  top: 10px;
+  display: grid;
+  place-items: center;
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #24c29a, #15936f);
+  color: #f4fffb;
+  font-size: 24px;
+  box-shadow: 0 18px 36px rgba(10, 53, 41, 0.28);
+}
+
+.timeline-item.is-final .timeline-num {
+  background: linear-gradient(180deg, #d9982c, #b46900);
+}
+
+.timeline-card {
+  padding: 26px 30px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--panel-strong);
+}
+
+.timeline-card h3 {
+  margin: 0 0 12px;
+  font-size: clamp(24px, 2.6vw, 34px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.timeline-card p {
+  margin: 0;
+  font-size: clamp(17px, 2vw, 22px);
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.timeline-item.is-final .timeline-card {
+  border-color: rgba(196, 122, 18, 0.72);
+  box-shadow: inset 0 0 0 1px rgba(196, 122, 18, 0.08);
+}
+
+.timeline-item.is-final .timeline-card h3 {
+  color: #e6a136;
+}
+
+.start-scenarios {
+  display: grid;
+  gap: 22px;
+  margin-top: 30px;
+}
+
+.scenario {
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.scenario-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 18px;
+  align-items: baseline;
+  margin-bottom: 22px;
+}
+
+.scenario h3 {
+  margin: 0;
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+
+.scenario-meta {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.modules {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.module {
+  min-height: 132px;
+  padding: 18px 18px 16px;
+  border: 1px solid var(--line-soft);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.module.is-highlight {
+  background: linear-gradient(180deg, rgba(127, 71, 0, 0.96), rgba(89, 50, 0, 0.94));
+  border-color: rgba(255, 196, 104, 0.18);
+}
+
+.module-label {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 11px;
+  color: #d9c8a9;
+}
+
+.module strong {
+  display: block;
+  font-size: clamp(18px, 2vw, 28px);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+}
+
+.callout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  margin-top: 24px;
+  padding: 24px 28px;
+  border: 1px solid rgba(33, 180, 142, 0.18);
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, rgba(33, 180, 142, 0.1), rgba(33, 180, 142, 0.04));
+}
+
+.callout strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: clamp(22px, 2.5vw, 30px);
+  letter-spacing: -0.04em;
+}
+
+.callout p {
+  margin: 0;
+  color: #d3ede5;
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+.callout-badge {
+  padding: 12px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #d7fff2;
+  font-family: "Unbounded", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 28px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  padding: 0 4px;
+}
+
+.footer a {
+  color: #ffcf88;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.footer p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@media (max-width: 1100px) {
+  .summary {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-grid,
+  .section-header,
+  .callout {
+    grid-template-columns: 1fr;
+  }
+
+  .modules {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .page {
+    width: min(100% - 20px, 1240px);
+    padding: 10px 0 32px;
+  }
+
+  .shell {
+    padding: 16px;
+    border-radius: 24px;
+  }
+
+  .hero,
+  .section {
+    padding: 22px 18px;
+    border-radius: 24px;
+  }
+
+  .timeline {
+    padding-left: 0;
+  }
+
+  .timeline::before {
+    left: 20px;
+    top: 84px;
+    bottom: 28px;
+  }
+
+  .timeline-item {
+    padding-left: 56px;
+  }
+
+  .timeline-num {
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .timeline-card {
+    padding: 20px 18px;
+  }
+
+  .scenario {
+    padding: 20px 18px;
+  }
+
+  .modules {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .module {
+    min-height: 118px;
+  }
+
+  .callout {
+    padding: 20px 18px;
+  }
+}
+
+@media (max-width: 520px) {
+  .eyebrow {
+    font-size: 11px;
+    line-height: 1.3;
+  }
+
+  .hero-copy p,
+  .section p.lead,
+  .timeline-card p,
+  .callout p {
+    font-size: 16px;
+  }
+
+  .modules {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="shell">
+    <section class="hero">
+      <span class="eyebrow">Лондон · 2026-2027</span>
+
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1>От интервью до первого модуля</h1>
+          <p>После интервью с партнером и решения идти ты делаешь первый взнос и начинаешь подготовку с группой. Когда наберётся 20 человек, программа стартует в ближайшее окно.</p>
+        </div>
+
+        <aside class="hero-note">
+          <span class="note-label">Карта пути</span>
+          <p>Эта страница собрана как отдельная публичная ссылка для клиентов: можно открыть с телефона, переслать в чат или использовать как ориентир до старта программы.</p>
+        </aside>
+      </div>
+
+      <div class="summary" aria-label="Ключевые этапы подготовки">
+        <article class="summary-card">
+          <span class="card-label">Первый взнос</span>
+          <h2>1 500 £</h2>
+          <p>В зачёт полной стоимости. После оплаты ты входишь в набор группы и получаешь следующий шаг.</p>
+        </article>
+
+        <article class="summary-card">
+          <span class="card-label">Групповая сессия</span>
+          <h2>Hogan Assessment</h2>
+          <p>4-5 часов онлайн. Знакомство с группой, практика и работа с инструментом Hogan.</p>
+        </article>
+
+        <article class="summary-card">
+          <span class="card-label">Индивидуально</span>
+          <h2>2 встречи</h2>
+          <p>Дебрифинг Hogan — 1,5 часа. Vision-сессия — 1 час. Два шага, которые собирают твою личную карту входа в программу.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="prep-title">
+      <div class="section-header">
+        <div>
+          <span class="mini-label">Последовательность</span>
+          <h2 id="prep-title">Подготовка</h2>
+          <p class="lead">Эти этапы ты проходишь между интервью и стартом программы. Они идут последовательно, по мере того как формируется группа.</p>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <article class="timeline-item">
+          <div class="timeline-num">1</div>
+          <div class="timeline-card">
+            <h3>Первый шаг: договор и взнос</h3>
+            <p>Подписываешь договор, заполняешь короткий опросник, делаешь взнос 1 500 £. Ты в группе.</p>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-num">2</div>
+          <div class="timeline-card">
+            <h3>Знакомство группы и Hogan Assessment</h3>
+            <p>Когда в группе соберётся 8-10 человек, проводим групповую практику онлайн на 4-5 часов: работа с Hogan-отчётами и знакомство с инструментом Hogan Assessment.</p>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-num">3</div>
+          <div class="timeline-card">
+            <h3>Индивидуальный дебрифинг по Hogan</h3>
+            <p>Один на один с партнером, 1,5 часа онлайн. Дебрифинг переводит твой Hogan-отчёт на язык реальной работы и жизни: где сильные стороны, какие паттерны включаются под стрессом, какие слепые зоны видны со стороны. Без дебрифинга это шкалы; с дебрифингом — карта, с которой ты идёшь в программу.</p>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-num">4</div>
+          <div class="timeline-card">
+            <h3>Vision-сессия</h3>
+            <p>Один на один с партнером, 1 час. Формулируем твоё намерение на год: главный вопрос, с которым ты идёшь в программу, что должно измениться, как ты поймёшь, что это случилось. На выходе — опорный документ, к которому возвращаешься на каждом модуле.</p>
+          </div>
+        </article>
+
+        <article class="timeline-item is-final">
+          <div class="timeline-num">5</div>
+          <div class="timeline-card">
+            <h3>Готовность</h3>
+            <p>Ты познакомлен с группой, прошёл дебрифинг и сформулировал намерение. Дальше ждём, когда в группе соберётся 20 человек.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="start-title">
+      <div class="section-header">
+        <div>
+          <span class="mini-label">Старт программы</span>
+          <h2 id="start-title">Точки старта</h2>
+          <p class="lead">Программа запускается, когда в группе собирается 20 человек. Если к ближайшей точке группа не собралась, сбор продолжается до следующей. Расписание программы зависит от того, к какой точке наберётся группа.</p>
+        </div>
+      </div>
+
+      <div class="start-scenarios">
+        <article class="scenario">
+          <div class="scenario-head">
+            <h3>Если стартуем в августе</h3>
+            <span class="scenario-meta">Пять модулей за восемь месяцев</span>
+          </div>
+
+          <div class="modules" aria-label="Расписание при старте в августе">
+            <div class="module is-highlight">
+              <span class="module-label">Модуль 1</span>
+              <strong>14-16 авг 2026</strong>
+            </div>
+            <div class="module">
+              <span class="module-label">Модуль 2</span>
+              <strong>2-4 окт 2026</strong>
+            </div>
+            <div class="module">
+              <span class="module-label">Модуль 3</span>
+              <strong>4-6 дек 2026</strong>
+            </div>
+            <div class="module">
+              <span class="module-label">Модуль 4</span>
+              <strong>5-7 фев 2027</strong>
+            </div>
+            <div class="module">
+              <span class="module-label">Модуль 5</span>
+              <strong>9-11 апр 2027</strong>
+            </div>
+          </div>
+        </article>
+
+        <article class="scenario">
+          <div class="scenario-head">
+            <h3>Если стартуем в октябре</h3>
+            <span class="scenario-meta">Расписание сдвигается на два месяца</span>
+          </div>
+
+          <div class="modules" aria-label="Расписание при старте в октябре">
+            <div class="module is-highlight">
+              <span class="module-label">Модуль 1</span>
+              <strong>2-4 окт 2026</strong>
+            </div>
+            <div class="module">
+              <span class="module-label">Модуль 2</span>
+              <strong>4-6 дек 2026</strong>
+            </div>
+            <div class="module">
+              <span class="module-label">Модуль 3</span>
+              <strong>5-7 фев 2027</strong>
+            </div>
+            <div class="module">
+              <span class="module-label">Модуль 4</span>
+              <strong>9-11 апр 2027</strong>
+            </div>
+            <div class="module">
+              <span class="module-label">Модуль 5</span>
+              <strong>25-27 июн 2027</strong>
+            </div>
+          </div>
+        </article>
+
+        <article class="scenario">
+          <div class="scenario-head">
+            <h3>Если стартуем в декабре</h3>
+            <span class="scenario-meta">Сдвиг на четыре месяца</span>
+          </div>
+
+          <div class="modules" aria-label="Расписание при старте в декабре">
+            <div class="module is-highlight">
+              <span class="module-label">Модуль 1</span>
+              <strong>4-6 дек 2026</strong>
+            </div>
+            <div class="module">
+              <span class="module-label">Модуль 2</span>
+              <strong>5-7 фев 2027</strong>
+            </div>
+            <div class="module">
+              <span class="module-label">Модуль 3</span>
+              <strong>9-11 апр 2027</strong>
+            </div>
+            <div class="module">
+              <span class="module-label">Модуль 4</span>
+              <strong>25-27 июн 2027</strong>
+            </div>
+            <div class="module">
+              <span class="module-label">Модуль 5</span>
+              <strong>13-15 авг 2027</strong>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="callout">
+        <div>
+          <strong>Что важно помнить</strong>
+          <p>Подготовка начинается сразу после интервью и первого взноса, а сам старт программы привязан не к фиксированной дате, а к моменту, когда в группе набирается 20 участников.</p>
+        </div>
+        <div class="callout-badge">Публичная ссылка</div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>
+        <span class="footer-note">Отдельная страница</span>
+        <p>Публичный URL этой карты: <a href="https://tufsla-web.github.io/dialog-golosov/london-2026-2027/">tufsla-web.github.io/dialog-golosov/london-2026-2027/</a></p>
+      </div>
+      <p>Evolution.new · London 2026-2027</p>
+    </footer>
+  </div>
+</main>
+</body>
+</html>
